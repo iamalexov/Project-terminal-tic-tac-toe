@@ -1,4 +1,4 @@
-import { checkRow } from "../status-checker";
+import { checkRow, checkColumn } from "../status-checker";
 
 describe("CheckRow function tests", () => {
   [
@@ -24,6 +24,21 @@ describe("CheckRow function tests", () => {
   ].forEach(({board, player, row, expected}) => {
     it("For row does not completed by player returns false", () => {
       expect(checkRow(board, player, row)).toEqual(expected);
+    });
+  });
+});
+
+describe("CheckColumn function tests", () => {
+  [
+    { board: [["X", "0", "0"], ["X", "0", "_"], ["X", "_", "_"]], player: "X", column: 0, expected: true },
+    { board: [["_", "X", "_"], ["0", "X", "X"], ["0", "X", "_"]], player: "X", column: 1, expected: true },
+    { board: [["0", "_", "X"], ["0", "0", "X"], ["_", "_", "X"]], player: "X", column: 2, expected: true },
+    { board: [["0", "0", "X"], ["0", "X", "_"], ["0", "X", "_"]], player: "0", column: 0, expected: true },
+    { board: [["_", "0", "X"], ["X", "0", "0"], ["X", "0", "_"]], player: "0", column: 1, expected: true },
+    { board: [["X", "_", "0"], ["_", "X", "0"], ["0", "X", "0"]], player: "0", column: 2, expected: true },
+  ].forEach(({board, player, column, expected}) => {
+    it("For column filled by player returns true", () => {
+      expect(checkColumn(board, player, column)).toEqual(expected);
     });
   });
 });
