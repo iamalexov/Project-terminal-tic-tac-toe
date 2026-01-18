@@ -1,4 +1,4 @@
-import { checkRow, checkColumn } from "../status-checker";
+import { checkRow, checkColumn, checkDiagonal } from "../status-checker";
 
 describe("CheckRow function tests", () => {
   [
@@ -52,6 +52,19 @@ describe("CheckColumn function tests", () => {
   ].forEach(({board, player, column, expected}) => {
     it("For column does not completed by player returns false", () => {
       expect(checkColumn(board, player, column)).toEqual(expected);
+    });
+  });
+});
+
+describe("CheckDiagonal function tests", () => {
+  [
+    { board: [["X", "0", "0"], ["0", "X", "_"], ["0", "_", "X"]], player: "X", column: 0, expected: true },
+    { board: [["_", "X", "X"], ["0", "X", "0"], ["X", "0", "_"]], player: "X", column: 1, expected: true },
+    { board: [["0", "0", "X"], ["X", "0", "_"], ["_", "X", "0"]], player: "0", column: 0, expected: true },
+    { board: [["_", "X", "0"], ["X", "0", "_"], ["0", "0", "X"]], player: "0", column: 1, expected: true },
+  ].forEach(({board, player, column, expected}) => {
+    it("For any diagonal filled by player returns true", () => {
+      expect(checkDiagonal(board, player, column)).toEqual(expected);
     });
   });
 });

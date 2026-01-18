@@ -48,8 +48,15 @@ export function checkColumn(board, player, columnNumber) {
     Return true if the player has made a move in 3 diagonal squares
     Otherwise, return false
 */
-function checkDiagonal(board, player) {
-    // It may be easier to use an if statement than a loop here
+export function checkDiagonal(board, player) {
+    return (
+      (board[0][0] === player &&
+        board[1][1] === player &&
+        board[2][2] === player) ||
+        board[0][2] === player &&
+        board[1][1] === player &&
+        board[2][0] === player
+    );
 }
 
 
