@@ -41,4 +41,17 @@ describe("CheckColumn function tests", () => {
       expect(checkColumn(board, player, column)).toEqual(expected);
     });
   });
+
+  [
+    { board: [["X", "0", "0"], ["0", "0", "_"], ["X", "_", "X"]], player: "X", column: 0, expected: false },
+    { board: [["_", "0", "X"], ["0", "0", "X"], ["0", "0", "X"]], player: "X", column: 1, expected: false },
+    { board: [["0", "_", "0"], ["X", "0", "X"], ["_", "_", "X"]], player: "X", column: 2, expected: false },
+    { board: [["X", "0", "X"], ["0", "0", "_"], ["0", "X", "_"]], player: "0", column: 0, expected: false },
+    { board: [["_", "0", "X"], ["X", "0", "0"], ["0", "X", "_"]], player: "0", column: 1, expected: false },
+    { board: [["X", "_", "0"], ["_", "0", "0"], ["0", "X", "X"]], player: "0", column: 2, expected: false },
+  ].forEach(({board, player, column, expected}) => {
+    it("For column does not completed by player returns false", () => {
+      expect(checkColumn(board, player, column)).toEqual(expected);
+    });
+  });
 });
