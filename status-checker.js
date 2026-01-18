@@ -18,7 +18,11 @@ import { checkIfNoMovesLeft } from './board-printer.js';
     Otherwise, return false
 */
 export function checkRow(board, player, rowNumber) {
-    return true;
+    return (
+      board[rowNumber][0] === player &&
+      board[rowNumber][1] === player &&
+      board[rowNumber][2] === player
+    );
 }
 
 /*

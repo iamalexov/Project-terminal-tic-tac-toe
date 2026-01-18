@@ -13,4 +13,17 @@ describe("CheckRow function tests", () => {
       expect(checkRow(board, player, row)).toEqual(expected);
     });
   });
+
+  [
+    { board: [["0", "0", "0"], ["X", "_", "X"], ["0", "X", "_"]], player: "X", row: 0, expected: false },
+    { board: [["_", "0", "X"], ["X", "0", "X"], ["0", "_", "_"]], player: "X", row: 1, expected: false },
+    { board: [["0", "0", "X"], ["_", "0", "X"], ["X", "0", "X"]], player: "X", row: 2, expected: false },
+    { board: [["X", "X", "X"], ["_", "0", "_"], ["_", "0", "_"]], player: "0", row: 0, expected: false },
+    { board: [["_", "0", "X"], ["X", "0", "0"], ["X", "X", "0"]], player: "0", row: 1, expected: false },
+    { board: [["X", "_", "_"], ["_", "X", "0"], ["0", "0", "X"]], player: "0", row: 2, expected: false },
+  ].forEach(({board, player, row, expected}) => {
+    it("For row does not completed by player returns false", () => {
+      expect(checkRow(board, player, row)).toEqual(expected);
+    });
+  });
 });
