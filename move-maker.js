@@ -15,11 +15,39 @@
             ['O', 'O', 'X']
         ];
 */
+let board = [
+    ['X', '_', '_'],
+    ['_', 'X', '_'],
+    ['O', 'O', 'X']
+];
+
+
 function validateMove(move, board) {
     // Implement this at the end if you have time, otherwise you can help your teammates!
-    return true;
+    const parts = move.split(',');
+const row = Number(parts[0]);
+const col = Number(parts[1]);
+
+if (row < 1 || row > 3 || col <1 || col > 3) {
+    console.log("Try again...");
+    return false;
 }
 
+const rowIndex = row - 1;
+const colIndex = col - 1;
+console.log(board[rowIndex][colIndex]);
+
+if (board[rowIndex][colIndex] !== '_'){
+console.log("Try again...");
+return false;
+}
+return true
+}
+validateMove("1,1", board);
+validateMove("2,3", board);
+validateMove("5,3", board);
+validateMove("a,3", board);
+validateMove("2,4", board);
 /*
     Given 3 parameters:
         - a board (an array of arrays)
@@ -32,5 +60,19 @@ function validateMove(move, board) {
             - Return true
 */
 export function makeMove(board, move, player) {
+
+     if (!validateMove(move, board))
     return false;
+
+    const partsboard = move.split(',');
+    const rowboard = Number(partsboard[0]);
+    const colboard = Number(partsboard[1]);
+
+    const rowIndex1 = rowboard - 1;
+    const colIndex1 = colboard - 1;
+    board[rowIndex1][colIndex1]= player;
+
+    return true;
+
 }
+
