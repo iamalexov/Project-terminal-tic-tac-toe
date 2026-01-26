@@ -15,39 +15,41 @@
             ['O', 'O', 'X']
         ];
 */
-let board = [
-    ['X', '_', '_'],
-    ['_', 'X', '_'],
-    ['O', 'O', 'X']
-];
 
 
 function validateMove(move, board) {
-    // Implement this at the end if you have time, otherwise you can help your teammates!
     const parts = move.split(',');
-const row = Number(parts[0]);
-const col = Number(parts[1]);
 
-if (row < 1 || row > 3 || col <1 || col > 3) {
-    console.log("Try again...");
-    return false;
+    if (parts.length !== 2) {
+        console.log("Try again...");
+        return false;
+    }
+
+    const row = Number(parts[0]);
+    const col = Number(parts[1]);
+
+    if (Number.isNaN(row) || Number.isNaN(col)) {
+        console.log("Try again...");
+        return false;
+    }
+
+    if (row < 1 || row > 3 || col < 1 || col > 3) {
+        console.log("Try again...");
+        return false;
+    }
+
+    const rowIndex = row - 1;
+    const colIndex = col - 1;
+
+    if (board[rowIndex][colIndex] !== '_') {
+        console.log("Try again...");
+        return false;
+    }
+
+    return true;
 }
 
-const rowIndex = row - 1;
-const colIndex = col - 1;
-console.log(board[rowIndex][colIndex]);
 
-if (board[rowIndex][colIndex] !== '_'){
-console.log("Try again...");
-return false;
-}
-return true
-}
-validateMove("1,1", board);
-validateMove("2,3", board);
-validateMove("5,3", board);
-validateMove("a,3", board);
-validateMove("2,4", board);
 /*
     Given 3 parameters:
         - a board (an array of arrays)
